@@ -307,5 +307,13 @@ fun longestSublist(L) =
 
 longestSublist([1,1,2,3,2,1,2,3,4,5,6,6]); (* 6 *)
 
+fun odd(n) = if n=0 then false else even(n-1)
+    and
+    even(n) = if n=0 then true else odd(n-1);
+
+fun opKnuth 1 a b = Math.pow (a,b)
+| opKnuth n a b = opKnuth (n−1) a
+(opKnuth (n−1) b b);
+
 
 ```
