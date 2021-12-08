@@ -314,6 +314,22 @@ fun odd(n) = if n=0 then false else even(n-1)
 fun opKnuth 1 a b = Math.pow (a,b)
 | opKnuth n a b = opKnuth (n−1) a
 (opKnuth (n−1) b b);
-
-
 ```
+
+```fun mult X Y = if X = 0 then 0 else X * Y;```
+Eager evaluation (SML): reduce as much as possible before applying the
+function
+``` mult (1−1) (3 div 0);
+-> (fn x => (fn y => if x = 0 then 0 else x ∗ y)) (1−1) (3 div 0)
+-> (fn x => (fn y => if x = 0 then 0 else x ∗ y)) 0 (3 div 0)
+-> (fn y => if 0 = 0 then 0 else 0 ∗ y) (3 div 0)
+-> (fn y => if 0 = 0 then 0 else 0 ∗ y) error
+-> error
+```
+Lazy evaluation (Haskell): delay evaluation until it is necessary.
+``` mult (1−1) (3 div 0);
+-> (fn x => (fn y => if x = 0 then 0 else x ∗ y)) (1−1) (3 div 0)
+-> (fn y => if (1−1) = 0 then 0 else (1−1) ∗ y) (3 div 0)
+-> if (1−1) = 0 then 0 else (1−1) ∗ (3 div 0)
+-> if 0 = 0 then 0 else (1−1) ∗ (3 div 0)
+-> 0 ```
