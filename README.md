@@ -332,4 +332,5 @@ Lazy evaluation (Haskell): delay evaluation until it is necessary.
 -> (fn y => if (1−1) = 0 then 0 else (1−1) ∗ y) (3 div 0)
 -> if (1−1) = 0 then 0 else (1−1) ∗ (3 div 0)
 -> if 0 = 0 then 0 else (1−1) ∗ (3 div 0)
--> 0 ```
+-> 0 
+```
