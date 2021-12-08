@@ -80,6 +80,14 @@ fun compress(L) = if L = [] then []
     else if hd(L) = hd(tl(L)) then compress(tl(L)) (*consecutive duplicate, so remove*)
     else hd(L)::compress(tl(L)); (* keep if not duplicate *)
 
+fun remove(x,lst) = case lst of
+  [] => []
+  |h::t => if (x=h) then remove(x,t) else h::(remove(x,t));
+
+fun removedupl(lst) = case lst of
+  [] => []
+  |h::t => h::removedupl(remove(h,lst));
+
 fun packHelper(Current, Prefix, L) = 
     if L = [] then [Prefix] (* when reach end of list, return final accumulator *)
     else if Current = hd(L) then packHelper(Current, hd(L)::Prefix, tl(L)) (* Continue accumulating Prefix*)
