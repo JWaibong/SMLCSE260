@@ -67,6 +67,16 @@ fun palindrome(L) = L = reverse(L);
 fun flat(L) = if L = [] then []
     else hd(L) @ flat(tl(L));
 
+fun gcd(N,M) = if N=M then N
+  else if N>M then gcd(M,N-M)
+  else gcd(N,M-N);
+fun fraction (n,d) =
+  let val k = gcd (n,d)
+    in
+    ( n div k , d div k )
+    end;
+(*Instead of calling gcd twice, we can call it just once*)
+
 (*powerset is powerset of tail concatenated with inserting the head into each element of the powerset of tail*)
 fun insertAll(ele,L) = if L = [] then []
     else (ele::hd(L))::(insertAll(ele,tl(L)));
