@@ -67,10 +67,7 @@ fun palindrome(L) = L = reverse(L);
 fun flat(L) = if L = [] then []
     else hd(L) @ flat(tl(L));
 
-(*powerset is powerset of tail 
-concatenated with inserting 
-the head into each element of the
-powerset of tail*)
+(*powerset is powerset of tail concatenated with inserting the head into each element of the powerset of tail*)
 fun insertAll(ele,L) = if L = [] then []
     else (ele::hd(L))::(insertAll(ele,tl(L)));
 (*L is a list of lists, so adding ele to each list*)
