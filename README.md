@@ -11,6 +11,11 @@ fun reverseDigitsAux(acc, n) = if n < 10 then acc*10 + n
 fun reverseDigits n = if n < 0 then ~(reverseDigitsAux(0,~n))
     else reverseDigitsAux(0, n);
 
+fun reverse_helper(lst1,lst2) = case lst1 of 
+  [] => lst2
+  |h::t => reverse_helper(t,h::lst2);
+fun reverse(lst) = reverse_helper(lst,[]);
+
 fun min(X:int, Y:int) = if X < Y then X else Y;
 
 fun getN(L,M) = if M < 1 then []
@@ -220,6 +225,7 @@ fun sort order [] = []
             else y::merge L ys
         val (ys,zs) = split xs
             in merge (sort order ys) (sort order zs) end; *)
+
 fun take(L) =
   if L = nil then nil
   else hd(L)::skip(tl(L))
@@ -234,5 +240,46 @@ fun merge([],R) = R
     else y::merge(x::xl,yl);
 fun sort(L) = if L=[] orelse tl(L)=[] then L
   else merge(sort(take(L)),sort(skip(L)));
+
+
+fun member(X,L) = if (L=[]) then false
+    else if (X=hd(L)) then true
+    else member(X,tl(L));
+
+fun union(L1, L2) = if (L1=[]) then L2
+    else if (L2=[]) then L1
+    else if (member(hd(L1),L2)) then union(tl(L1), L2)
+    else hd(L1)::union(tl(L1),L2);
+
+fun intersection(L1, L2) = if (L1=[]) then []
+    else if (L2=[]) then []
+    else if (member(hd(L1),L2)) then hd(L1)::intersection(tl(L1),L2)
+    else intersection(tl(L1),L2);
+
+fun subset(L1, L2) = if (L1=[]) then true
+    else if (L2=[] andalso L1=[]) then true
+    else if (L2=[]) then false
+    else if (member(hd(L1),L2)) then subset(tl(L1),L2)
+    else false;
+
+fun minus(L1, L2) = if (L1=[]) then []
+    else if (L2=[]) then L1
+    else if (member(hd(L1),L2)) then minus(tl(L1),L2)
+    else hd(L1)::minus(tl(L1),L2);
+
+fun product_help(X,L2) = if (L2=[]) then [] (*No pairs available for creation *)
+    else (X,hd(L2))::product_help(X,tl(L2));
+
+fun product(L1,L2) =
+    if (L1=[]) then []
+    else union(product_help(hd(L1),L2), product(tl(L1),L2));
+
+fun minMaxHelper(min,max,L) = if (L=[]) then (min,max) 
+    else if hd(L) < min then minMaxHelper(hd(L),max, tl(L))
+    else if hd(L) > max then minMaxHelper(min, hd(L),tl(L))
+    else minMaxHelper(min, max, tl(L));
+fun minMax(L) = if (L = []) then (0,0)
+    else minMaxHelper(hd(L),hd(L),L);
+
 
 ```
