@@ -295,7 +295,7 @@ fun longestSublist(L) =
     if L=[] then 0
     else max( length(longestPrefix(L,[])), longestSublist(tl(L)) );
 
-longestSublist([1,1,2,3,2,1,2,3,4,5,6,6]);
+longestSublist([1,1,2,3,2,1,2,3,4,5,6,6]); (* 6 *)
 
 
 ```
