@@ -11,11 +11,6 @@ fun reverseDigitsAux(acc, n) = if n < 10 then acc*10 + n
 fun reverseDigits n = if n < 0 then ~(reverseDigitsAux(0,~n))
     else reverseDigitsAux(0, n);
 
-fun reverse_helper(lst1,lst2) = case lst1 of 
-  [] => lst2
-  |h::t => reverse_helper(t,h::lst2);
-fun reverse(lst) = reverse_helper(lst,[]);
-
 fun min(X:int, Y:int) = if X < Y then X else Y;
 
 fun getN(L,M) = if M < 1 then []
