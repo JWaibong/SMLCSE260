@@ -147,7 +147,7 @@ must reach the end of the list and then go right to left*)
 
 fun sumList aList = reduce (op +) 0 aList;
 sumList [1,2,3]; (* 6 *)
-(* +(1, reduce + 0 [2,3]) = +(1 + (2, reduce + 0 [3])) = +(1 + 2 + (3, reduce + 0 []) = +(1 + 2 + 3 + 0) *)
+(* (1 + reduce op+ 0 [2,3]) = (1 + (2, reduce op+ 0 [3])) = (1 + (2 + (3, reduce op+ 0 [])) = (1 + (2 + (3 + 0))) *)
 
 fun foldl(f: ''a*'b->'b, Acc: 'b, L: ''a list):'b =
     if L=[] then Acc
