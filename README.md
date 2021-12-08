@@ -87,7 +87,7 @@ fun remove(x,lst) = case lst of
 fun removedupl(lst) = case lst of
   [] => []
   |h::t => h::removedupl(remove(h,lst));
-
+(*removedupl [3,2,4,6,4,3,2,3,4,3,2,1] = [3,2,4,6,1] *)
 fun packHelper(Current, Prefix, L) = 
     if L = [] then [Prefix] (* when reach end of list, return final accumulator *)
     else if Current = hd(L) then packHelper(Current, hd(L)::Prefix, tl(L)) (* Continue accumulating Prefix*)
