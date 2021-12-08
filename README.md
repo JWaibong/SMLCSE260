@@ -315,6 +315,18 @@ fun opKnuth 1 a b = Math.pow (a,b)
 | opKnuth n a b = opKnuth (n−1) a
 (opKnuth (n−1) b b);
 ```
+```
+fun f A B C = A+B+C;
+val f = fn : int -> int -> int -> int
+val f = fn : int -> (int -> (int -> int))
+ val inc1 = f(1);
+val inc1 = fn : int -> int -> int
+val inc1 = fn : int -> (int -> int)
+ val inc12 = inc1(2);
+val inc12 = fn : int -> int
+ inc12(3);
+val it = 6 : int
+```
 
 ```fun mult X Y = if X = 0 then 0 else X * Y;```
 Eager evaluation (SML): reduce as much as possible before applying the
